@@ -1,2 +1,2 @@
 # NFT-builder
-The smart contract to build NFTs
+The smart contract used to build NFTs
