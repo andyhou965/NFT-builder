@@ -23,7 +23,7 @@ And the following functions for Owner:
 -   editMintWindows(bool \_publicMintOpen, bool \_allowListMintOpen): Update the mint status, edit the publicMintOpen and allowListMintOpen variables
 -   setAllowList(address[] calldata addresses): Update the Allowlist
 
-## The Workflow
+## User Guide
 
 1. Copy the NFTBuilder into Remix IDE (https://remix.ethereum.org/)
 
