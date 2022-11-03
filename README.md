@@ -14,7 +14,7 @@ The contract include 3 variables as following:
 
 The contract mainly implement the following functions for Buyer:
 
--   allowListMint(): Used for Allowlist Mint NFTs. Only the people in allowList allow to mint.
+-   allowListMint(): Use for Allowlist Mint NFTs. Only the people in allowList allow to mint.
 -   publicMint(): Use for Public Mint NFTs.
 -   withdraw(address \_addr): Withdraw the money from the contract
 
@@ -25,7 +25,7 @@ And the following functions for Owner:
 
 ## User Guide
 
-1. Copy the NFTBuilder into Remix IDE (https://remix.ethereum.org/)
+1. Copy the NFTBuilder into Remix IDE (https://remix.ethereum.org/), named "NFTBuilder.sol"
 
 2. Compile the NFTBuilder.sol
 
@@ -44,13 +44,13 @@ And the following functions for Owner:
      <img src="./images/editMintWindows.png" alt="editMintWindows" width=200>
  </p>
 
-5. Set the Allowlist. Add the address into Allowlist using "setAllowlist"
+5. Set the Allowlist. Add whitelisted buyers' addresses into allowlist using "setAllowlist"
 
  <p align="center">
      <img src="./images/setAllowlist.png" alt="setAllowlist" width=200>
  </p>
 
-6. Allowlist Mint. Using "allowListMint" to mint NFTs with a VIP price (1 ETH). **First, we need to switch to a Buyer account**. After successfully mint, you can see the Balance of the contract updated to 1 ETH.
+6. Allowlist Mint. Using "allowListMint" to mint NFTs with a VIP price (1 ETH). **First, we need to switch to a whitelisted Buyer account**. After successfully mint, you can see the Balance of the contract updated to 1 ETH.
 
  <p align="center">
      <img src="./images/allowListMint.png" alt="allowListMint" width=200>
