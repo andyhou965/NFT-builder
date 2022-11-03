@@ -72,7 +72,7 @@ contract NFTBuilder is ERC721, ERC721Enumerable, Pausable, Ownable {
         payable(_addr).transfer(balalnce);
     }
 
-    // Update the Allowlist
+    // Update the allowlist
     function setAllowList(address[] calldata addresses) external onlyOwner {
         for(uint256 i = 0; i < addresses.length; i++){
             allowList[addresses[i]] = true;
