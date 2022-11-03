@@ -11,7 +11,7 @@ contract NFTBuilder is ERC721, ERC721Enumerable, Pausable, Ownable {
     using Counters for Counters.Counter;
     uint256 maxSupply = 10000;
 
-    bool public publicMintOpen = true;
+    bool public publicMintOpen = false;
     bool public allowListMintOpen = false;
 
     mapping(address => bool) public allowList;
@@ -32,7 +32,7 @@ contract NFTBuilder is ERC721, ERC721Enumerable, Pausable, Ownable {
         _unpause();
     }
 
-    // Update the mint windows
+    // Update the mint status, edit the publicMintOpen and allowListMintOpen variables
     function editMintWindows(
         bool _publicMintOpen,
         bool _allowListMintOpen
@@ -41,22 +41,24 @@ contract NFTBuilder is ERC721, ERC721Enumerable, Pausable, Ownable {
         allowListMintOpen = _allowListMintOpen;
     }
 
-    // Only the people in allowList allow to mint
+    // Use for Allowlist Mint NFTs. Only the people in allowList allow to mint
+    // First, check the mint status, then check the payment amount.
     function allowListMint() public payable {
         require(allowListMintOpen, "Allowlist Mint is closed now");
         require(allowList[msg.sender], "Sorry, you are not on the list");
-        require(msg.value == 0.001 ether, "The funds are not enough");
+        require(msg.value == 1 ether, "The funds are not enough");
         internalMint();
     }
 
-    // Check the payment
+    // Use for Public Mint NFTs. 
+    // First, check the mint status, then check the payment amount.
     function publicMint() public payable {
         require(publicMintOpen, "Public Mint is closed now");
-        require(msg.value == 0.01 ether, "The funds are not enough");
+        require(msg.value == 2 ether, "The funds are not enough");
         internalMint();
     }
 
-    // Check the supply limitation
+    // The mint function, first check the supply limitation
     function internalMint() internal {
         require(totalSupply() < maxSupply, "Sold Out");
         uint256 tokenId = _tokenIdCounter.current();
@@ -64,12 +66,13 @@ contract NFTBuilder is ERC721, ERC721Enumerable, Pausable, Ownable {
         _safeMint(msg.sender, tokenId);
     }
 
+    // Withdraw the money from the contract
     function withdraw(address _addr) external onlyOwner {
         uint256 balalnce = address(this).balance;
         payable(_addr).transfer(balalnce);
     }
 
-    // Update the AllowList
+    // Update the Allowlist
     function setAllowList(address[] calldata addresses) external onlyOwner {
         for(uint256 i = 0; i < addresses.length; i++){
             allowList[addresses[i]] = true;
